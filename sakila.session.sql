@@ -69,3 +69,54 @@ WHERE rating LIKE "%P";
 SELECT title, rating, length
 FROM film
 WHERE rating LIKE "P_";
+
+-----------------------------------------------------
+-----------------------------------------------------
+-- STATISTICS AND MATH FUNCTIONS IN SQL
+
+USE sakila;
+SHOW TABLES;
+
+-- how many in result meet a specific criteria
+SELECT COUNT(*)
+FROM film
+WHERE rating ="R";
+
+-- aggregate by number of films each category
+SELECT rating, count(*)
+FROM film
+GROUP BY rating
+ORDER BY rating;
+
+-- max of selected criteria
+SELECT max(length)
+FROM film;
+
+-- average of selected criteria, std, stdev, stdev_pop
+SELECT avg(length) AS Mean, stddev_samp(length) AS STD
+FROM film
+WHERE rating = "R";
+
+-- average length by rating
+SELECT rating, round(avg(length),0) AS Mean, round(stddev_samp(length),1) AS STD
+FROM film
+GROUP BY rating
+ORDER BY Mean DESC;
+
+
+-- sum of payments
+SELECT sum(amount)
+FROM payment;
+
+
+-- other common mathematical functions
+SELECT rand();
+
+SELECT sqrt();
+
+SELECT exp(1);
+
+
+
+
+
