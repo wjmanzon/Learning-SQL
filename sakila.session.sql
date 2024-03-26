@@ -116,7 +116,21 @@ SELECT sqrt();
 
 SELECT exp(1);
 
+-------------------------------------------------
+-------------------------------------------------
+-- INNER JOINS AND OUTER JOINS
 
+USE Sakila;
 
+SELECT first_name, last_name, phone
+FROM customer, address
+WHERE address.address_id = customer.address_id
+ORDER BY last_name;
 
+SELECT concat(first_name, " ", "last_name") AS actor_name, count(title)
+FROM actor
+JOIN film_actor ON film_actor.actor_id = actor.actor_id
+JOIN film ON film_actor.film_id = film.film_id
+GROUP BY actor_name
+ORDER BY count(title) DESC;
 
